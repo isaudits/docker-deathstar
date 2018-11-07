@@ -39,8 +39,8 @@ Run
     
 Options
 
-    usage: deathstar [-h] [-d] [-v] [--port PORT] [--no-relay]
-                         [--no-deathstar]
+    usage: entrypoint.py [-h] [-d] [-v] [--port PORT] [--no-relay]
+                         [--no-deathstar] [--no-mimikatz] [--no-domain-privesc]
                          [host_ip] [target_ip]
     
     Empire / DeathStar / Responder / NTLMRelayX automation script
@@ -56,6 +56,10 @@ Options
       --port PORT, -p PORT  Port for Empire listener (8443)
       --no-relay            Disable Responder / NTLMRelayX spoofing and relaying
       --no-deathstar        Disable Deathstar autopwn
+      --no-mimikatz         Do not use Mimikatz during lateral movement (default:
+                            False)
+      --no-domain-privesc   Do not use domain privilege escalation techniques
+                            (default: False)
 
 
 ### Disable options
