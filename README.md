@@ -1,8 +1,8 @@
 # docker-deathstar
 
 Docker implementation for automated domain admin using:
-* https://github.com/EmpireProject/Empire
 * https://github.com/byt3bl33d3r/DeathStar
+* https://github.com/EmpireProject/Empire
 * https://github.com/lgandx/Responder
 * https://github.com/SecureAuthCorp/impacket/blob/master/examples/ntlmrelayx.py
 * https://github.com/byt3bl33d3r/CrackMapExec
@@ -12,8 +12,7 @@ Docker implementation for automated domain admin using:
 Based upon attack scenarios described by byt3bl33d3r:
 * https://byt3bl33d3r.github.io/automating-the-empire-with-the-death-star-getting-domain-admin-with-a-push-of-a-button.html
 * https://byt3bl33d3r.github.io/practical-guide-to-ntlm-relaying-in-2017-aka-getting-a-foothold-in-under-5-minutes.html
-* https://byt3bl33d3r.github.io/getting-the-goods-with-crackmapexec-part-1.html
-* https://byt3bl33d3r.github.io/getting-the-goods-with-crackmapexec-part-2.html
+
 
 ## Runtime Notes
 Components run inside of tmux windows and must be individually closed via ctrl-c / exit commands.
@@ -55,6 +54,25 @@ Options
       -v, --verbose   Be verbose
       --no-relay      Disable Responder / NTLMRelayX spoofing and relaying
       --no-deathstar  Disable Deathstar autopwn
+
+
+### Disable options
+```--no-relay``` and ```no-deathstar``` flags are available to disable these components
+from launching.
+
+```--no-relay``` disables the MiTM components from Responder and NTLMRelayX, resulting in
+just an Empire listener with DeathStar integrated (unless disabled with the ```--no-deathstar```
+flag). Use this feature for a quick and dirty DeathStar setup without leveraging MiTM.
+
+```--no-deathstar``` disables the DeathStar component, allowing shells to be obtained via
+Empire without using DeathStar to further pivot and elevate privileges. DeathStar is initially
+launched and then killed to create the listener inside of Empire, and a tmux pane is left open
+so that DeathStar can be re-launched at any time by acivating the DeathStar pane and hitting
+the up-arrow.
+
+Use both flags together to get a quick Empire console with the optionn to re-enable DeathStar
+and attack atttached shells at any point in time.
+
 
 ### Quick launch via alias
 You can also source the aliases file in your .bash_aliases (kali) or .bash_profile (osx)
