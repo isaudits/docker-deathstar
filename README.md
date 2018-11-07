@@ -39,21 +39,23 @@ Run
     
 Options
 
-    usage: deathstar [-h] [-d] [-v] [--no-relay] [--no-deathstar]
+    usage: deathstar [-h] [-d] [-v] [--port PORT] [--no-relay]
+                         [--no-deathstar]
                          [host_ip] [target_ip]
     
     Empire / DeathStar / Responder / NTLMRelayX automation script
     
     positional arguments:
-      host_ip         Host IP
-      target_ip       Target IP / Range / Subnet (nmap format)
+      host_ip               Host IP
+      target_ip             Target IP / Range / Subnet (nmap format)
     
     optional arguments:
-      -h, --help      show this help message and exit
-      -d, --debug     Print lots of debugging statements
-      -v, --verbose   Be verbose
-      --no-relay      Disable Responder / NTLMRelayX spoofing and relaying
-      --no-deathstar  Disable Deathstar autopwn
+      -h, --help            show this help message and exit
+      -d, --debug           Print lots of debugging statements
+      -v, --verbose         Be verbose
+      --port PORT, -p PORT  Port for Empire listener (8443)
+      --no-relay            Disable Responder / NTLMRelayX spoofing and relaying
+      --no-deathstar        Disable Deathstar autopwn
 
 
 ### Disable options

