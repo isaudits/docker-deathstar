@@ -9,7 +9,7 @@ Docker implementation for automated domain admin using:
 
 ## Description
 
-Based upon attack scenarios described by byt3bl33d3r:
+Based upon attack scenarios described by [byt3bl33d3r](https://github.com/byt3bl33d3r):
 * https://byt3bl33d3r.github.io/automating-the-empire-with-the-death-star-getting-domain-admin-with-a-push-of-a-button.html
 * https://byt3bl33d3r.github.io/practical-guide-to-ntlm-relaying-in-2017-aka-getting-a-foothold-in-under-5-minutes.html
 
@@ -67,10 +67,10 @@ flag). Use this feature for a quick and dirty DeathStar setup without leveraging
 ```--no-deathstar``` disables the DeathStar component, allowing shells to be obtained via
 Empire without using DeathStar to further pivot and elevate privileges. DeathStar is initially
 launched and then killed to create the listener inside of Empire, and a tmux pane is left open
-so that DeathStar can be re-launched at any time by acivating the DeathStar pane and hitting
+so that DeathStar can be re-launched at any time by activating the DeathStar pane and hitting
 the up-arrow.
 
-Use both flags together to get a quick Empire console with the optionn to re-enable DeathStar
+Use both flags together to get a quick Empire console with the option to re-enable DeathStar
 and attack atttached shells at any point in time.
 
 
