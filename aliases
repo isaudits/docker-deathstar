@@ -11,8 +11,8 @@ if [[ $(uname -s) == Linux ]]
 then
     deathstar_command='docker run -it --rm --net=host deathstar'
 else
-    #NOTE - we should also map 137-138:137-138/udp but OSX has services running on those ports...maybe find them and kill them off?
-    #It appears that this keeps responder from picking up anything...
+    #NOTE - we should also map 137-138:137-138/udp but OSX has netbiosd running on those ports...
+    
     deathstar_command='docker run -it --rm -p 21:21 -p 25:25 -p 53:53 -p 80:80 -p 88:88 -p 110:110 -p 135:135 -p 143:143 -p 389:389 -p 443:443 -p 445:445 -p 587:587 -p 3141:3141 -p 8443:8443 -p 53:53/udp -p 88:88/udp -p 1434:1434/udp -p 5353-5355:5353-5355/udp deathstar'
 fi
 

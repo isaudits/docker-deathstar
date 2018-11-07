@@ -15,6 +15,18 @@ Based upon attack scenarios described by byt3bl33d3r:
 * https://byt3bl33d3r.github.io/getting-the-goods-with-crackmapexec-part-1.html
 * https://byt3bl33d3r.github.io/getting-the-goods-with-crackmapexec-part-2.html
 
+## Runtime Notes
+Components run inside of tmux windows and must be individually closed via ctrl-c / exit commands.
+Closing the parent terminal will leave the docker container running in the background.
+Make sure that you exit out all windows all the way down to your original command shell -
+If you see the tmux statusbar at the bottom of your command window, keep typing 'exit'!
+
+Running on OSX, the netbiosd service conflicts with listeners on UDP ports 137-138
+so these ports cannot be exposed from the docker container. This limits the attacks
+that Responder can leverage. Given the option, you will likely have better results
+running inside of a Linux VM with bridged networking on top of OSX as opposed to
+inside of a native OSX docker instance.
+
 ## Usage
 
 Build
@@ -25,10 +37,6 @@ Run
 
     ./deathstar.sh
     
-Or, alias the commands in aliases to your .bash_aliases (kali) or .bash_profile (osx) and launch with alias 'deathstar < options >'
-
-    source /path/to/docker-deathstar/aliases
-
     
 Options
 
@@ -47,6 +55,12 @@ Options
       -v, --verbose   Be verbose
       --no-relay      Disable Responder / NTLMRelayX spoofing and relaying
       --no-deathstar  Disable Deathstar autopwn
+
+### Quick launch via alias
+You can also source the aliases file in your .bash_aliases (kali) or .bash_profile (osx)
+and launch straight from terminal with alias ```deathstar <options>```
+
+    source /path/to/docker-deathstar/aliases
 
 --------------------------------------------------------------------------------
 
