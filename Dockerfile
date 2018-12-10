@@ -35,7 +35,8 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
 
 RUN git clone --depth=1 https://github.com/lgandx/Responder /opt/Responder && \
     sed -i "s/SMB = On/SMB = Off/g" /opt/Responder/Responder.conf && \
-    sed -i "s/HTTP = On/HTTP = Off/g" /opt/Responder/Responder.conf
+    sed -i "s/HTTP = On/HTTP = Off/g" /opt/Responder/Responder.conf && \
+    sed -i "s/HTTPS = On/HTTPS = Off/g" /opt/Responder/Responder.conf
 
 RUN git clone --recursive --depth=1 https://github.com/byt3bl33d3r/CrackMapExec /opt/CrackMapExec && \
     cd /opt/CrackMapExec && \

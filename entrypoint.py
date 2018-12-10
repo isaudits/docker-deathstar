@@ -33,8 +33,8 @@ def main():
     parser.add_argument('target_ip', help='Target IP / Range / Subnet (nmap format)',
                         nargs='?', default = ''
     )
-    parser.add_argument('--port', '-p', help='Port for Empire listener (8443)',
-                        default='8443'
+    parser.add_argument('--port', '-p', help='Port for Empire listener (443)',
+                        default='443'
     )
     parser.add_argument('--no-relay', help='Disable Responder / NTLMRelayX spoofing and relaying',
                         action='store_true', dest='disable_relay'
