@@ -79,6 +79,8 @@ the up-arrow.
 Use both flags together to get a quick Empire console with the option to re-enable DeathStar
 and attack atttached shells at any point in time.
 
+```--no-mimikatz``` and ```no-domain-privesc``` flags are native DeathStar options to disable
+Mimikatz and domain privilege escalation techniques, respectively.
 
 ### Quick launch via alias
 You can also source the aliases file in your .bash_aliases (kali) or .bash_profile (osx)
