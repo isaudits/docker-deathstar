@@ -46,13 +46,10 @@ RUN git clone --recursive --depth=1 https://github.com/byt3bl33d3r/CrackMapExec 
     cme --help
 
 # From https://github.com/EmpireProject/Empire/blob/master/Dockerfile
-# NOTE - pip install of urllbb3 due to error with version 1.24 and can likely be removed if Empire updates requirements.txt:
-# https://github.com/EmpireProject/Empire/issues/1266
 RUN git clone --depth=1 -b dev https://github.com/EmpireProject/Empire.git /opt/Empire && \
     cd /opt/Empire/ && \
     rm -rf .git && \
     cd /opt/Empire/setup/ && \
-    pip install urllib3==1.22 && \
     ./install.sh && \
     # installer grabs some more stuff from repo - clean it up!
     apt-get autoremove -y && \
