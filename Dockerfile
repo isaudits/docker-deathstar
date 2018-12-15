@@ -40,6 +40,7 @@ RUN git clone --depth=1 https://github.com/lgandx/Responder /opt/Responder && \
 
 RUN git clone --recursive --depth=1 https://github.com/byt3bl33d3r/CrackMapExec /opt/CrackMapExec && \
     cd /opt/CrackMapExec && \
+    rm -rf .git && \
     python setup.py install && \
     #run cme just to initialize it
     cme --help
@@ -48,6 +49,8 @@ RUN git clone --recursive --depth=1 https://github.com/byt3bl33d3r/CrackMapExec 
 # NOTE - pip install of urllbb3 due to error with version 1.24 and can likely be removed if Empire updates requirements.txt:
 # https://github.com/EmpireProject/Empire/issues/1266
 RUN git clone --depth=1 -b dev https://github.com/EmpireProject/Empire.git /opt/Empire && \
+    cd /opt/Empire/ && \
+    rm -rf .git && \
     cd /opt/Empire/setup/ && \
     pip install urllib3==1.22 && \
     ./install.sh && \
@@ -58,6 +61,7 @@ RUN git clone --depth=1 -b dev https://github.com/EmpireProject/Empire.git /opt/
 
 RUN git clone --depth=1 https://github.com/byt3bl33d3r/DeathStar /opt/DeathStar && \
     cd /opt/DeathStar && \
+    rm -rf .git && \
     pip3 install -r ./requirements.txt
 
 COPY entrypoint.py /opt/entrypoint.py
