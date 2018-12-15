@@ -2,7 +2,7 @@
 
 # docker run -it --rm -p 8443:8443 -p 80:80 -p 443:443 deathstar
 
-FROM debian
+FROM debian:stable
 
 WORKDIR /root/
 
