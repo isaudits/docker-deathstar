@@ -28,7 +28,11 @@ inside of a native OSX docker instance.
 
 ## Usage
 
-Build
+Pull:
+
+    docker pull isaudits/deathstar
+
+or Build:
 
     ./build.sh
 

@@ -1,5 +1,5 @@
 #!/bin/bash
 
 docker pull debian:stable
-docker build -t deathstar .
+docker build -t isaudits/deathstar .
 docker image prune -f
