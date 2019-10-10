@@ -34,6 +34,11 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     pip install impacket && \
     pip install libtmux
 
+RUN git clone --depth=1 https://github.com/byt3bl33d3r/DeathStar /opt/DeathStar && \
+    cd /opt/DeathStar && \
+    rm -rf .git && \
+    pip3 install -r ./requirements.txt
+
 RUN git clone --depth=1 https://github.com/lgandx/Responder /opt/Responder && \
     sed -i "s/SMB = On/SMB = Off/g" /opt/Responder/Responder.conf && \
     sed -i "s/HTTP = On/HTTP = Off/g" /opt/Responder/Responder.conf && \
@@ -58,11 +63,6 @@ RUN git clone --depth=1 -b dev https://github.com/EmpireProject/Empire.git /opt/
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-
-RUN git clone --depth=1 https://github.com/byt3bl33d3r/DeathStar /opt/DeathStar && \
-    cd /opt/DeathStar && \
-    rm -rf .git && \
-    pip3 install -r ./requirements.txt
 
 COPY entrypoint.py /opt/entrypoint.py
 COPY tmux.conf /root/.tmux.conf
