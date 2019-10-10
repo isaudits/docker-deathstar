@@ -51,8 +51,8 @@ RUN git clone --recursive --depth=1 https://github.com/byt3bl33d3r/CrackMapExec 
     #run cme just to initialize it
     cme --help
 
-# From https://github.com/EmpireProject/Empire/blob/master/Dockerfile
-RUN git clone --depth=1 -b dev https://github.com/EmpireProject/Empire.git /opt/Empire && \
+# Using BC-SECURITY fork now since original project abandoned
+RUN git clone --depth=1 https://github.com/BC-SECURITY/Empire.git /opt/Empire && \
     cd /opt/Empire/ && \
     rm -rf .git && \
     cd /opt/Empire/setup/ && \
