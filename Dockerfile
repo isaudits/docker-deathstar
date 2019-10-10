@@ -30,6 +30,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
+    pip install -U cryptography && \
     pip install impacket && \
     pip install libtmux
 
@@ -51,6 +52,8 @@ RUN git clone --depth=1 -b dev https://github.com/EmpireProject/Empire.git /opt/
     rm -rf .git && \
     cd /opt/Empire/setup/ && \
     ./install.sh && \
+    # fix bug for pefile module not found
+    pip install pefile && \
     # installer grabs some more stuff from repo - clean it up!
     apt-get autoremove -y && \
     apt-get clean && \
