@@ -21,6 +21,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     sudo \
     locales \
     lsb-release \
+    nmap \
     python-pip \
     python-dev \
     python3-pip \
@@ -44,13 +45,6 @@ RUN git clone --depth=1 https://github.com/lgandx/Responder /opt/Responder && \
     sed -i "s/HTTP = On/HTTP = Off/g" /opt/Responder/Responder.conf && \
     sed -i "s/HTTPS = On/HTTPS = Off/g" /opt/Responder/Responder.conf
 
-RUN git clone --recursive --depth=1 https://github.com/byt3bl33d3r/CrackMapExec /opt/CrackMapExec && \
-    cd /opt/CrackMapExec && \
-    rm -rf .git && \
-    python setup.py install && \
-    #run cme just to initialize it
-    cme --help
-
 # Using BC-SECURITY fork now since original project abandoned
 RUN git clone --depth=1 https://github.com/BC-SECURITY/Empire.git /opt/Empire && \
     cd /opt/Empire/ && \
@@ -64,7 +58,7 @@ RUN git clone --depth=1 https://github.com/BC-SECURITY/Empire.git /opt/Empire &&
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-COPY entrypoint.py /opt/entrypoint.py
+COPY entrypoint.py check-smb-signing.sh /opt/
 COPY tmux.conf /root/.tmux.conf
 ENTRYPOINT ["python", "/opt/entrypoint.py"]
 

