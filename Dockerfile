@@ -21,7 +21,6 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     sudo \
     locales \
     lsb-release \
-    nmap \
     python-pip \
     python-dev \
     python3-pip \
