@@ -1,5 +1,7 @@
 # docker-deathstar
 
+## THIS PROJECT IS NO LONGER MAINTAINED DUE TO OFFICIAL DOCKER IMAGES AVAILABLE FOR DEATHSTAR AND EMPIRE
+
 Docker implementation for automated domain admin using:
 * https://github.com/byt3bl33d3r/DeathStar
 * https://github.com/EmpireProject/Empire
